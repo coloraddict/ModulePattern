@@ -12,8 +12,58 @@
 				<h3>Revealing Module Pattern Illustration</h3>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col">
+				<h1 id="countView"></h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<button class="btn btn-primary" id="incrBtn">Increment Counter</button>
+				<button class="btn btn-primary" id="resetBtn">Reset Counter</button>
+			</div>
+		</div>
 	</div>
 
-<script defer type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script>
+
+	let countView, incrementBtn, resetButton, counter, curr_count;
+
+	function render(){
+		countView.innerHTML = curr_count;
+	}
+
+	function updateCount(){
+		curr_count = counter.getCount();
+		render();
+	}
+
+	function incrementCounter(){
+		counter.incrementCounter(10);
+		updateCount();
+	}
+
+	function resetCounter(){
+		counter.resetCounter();
+		updateCount();
+	}
+
+	function init(){		
+		counter = Counter;
+		curr_count = counter.getCount();
+		console.log(curr_count);
+
+		countView = document.getElementById("countView");
+		incrementBtn = document.getElementById("incrBtn");
+		incrementBtn.addEventListener('click', incrementCounter);
+		resetButton = document.getElementById("resetBtn");
+		resetButton.addEventListener('click', resetCounter);
+		render();
+	}
+
+	init();
+</script>
 </body>
 </html>
