@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -12,7 +12,11 @@
 				<h3>Revealing Module Pattern Illustration</h3>
 			</div>
 		</div>
+		<div class="mt-3"></div>
 		<div class="row">
+			<div class="col">
+				<label for="counter">Increment counter with: <input type="text" name="counter" id="inpCount"></label>			
+			</div>
 			<div class="col">
 				<h1 id="countView"></h1>
 			</div>
@@ -32,7 +36,7 @@
 	let countView, incrementBtn, resetButton, counter, curr_count;
 
 	function render(){
-		countView.innerHTML = curr_count;
+		countView.innerHTML = "Current count is: " + curr_count;
 	}
 
 	function updateCount(){
@@ -41,8 +45,15 @@
 	}
 
 	function incrementCounter(){
-		counter.incrementCounter(10);
+		let value = 0;
+		document.getElementById("inpCount").value === "" ? value = 1 : value = document.getElementById("inpCount").value
+		counter.incrementCounter(value);
 		updateCount();
+		clearInput();
+	}
+
+	function clearInput(){
+		document.getElementById("inpCount").value = null;
 	}
 
 	function resetCounter(){
